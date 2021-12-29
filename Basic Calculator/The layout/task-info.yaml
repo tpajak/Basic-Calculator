@@ -570,6 +570,14 @@ files:
 
     }
   learner_created: false
+- name: src/main/res/values/dimen.xml
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/190/stages/949/implement#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: 'java.lang.RuntimeException: java.lang.IllegalAccessException: Can not
+    set static final org.robolectric.internal.IShadow field org.robolectric.shadow.api.Shadow.SHADOW_IMPL
+    to org.robolectric.internal.bytecode.ShadowImpl'
+  time: Wed, 29 Dec 2021 15:19:08 UTC
 record: -1
