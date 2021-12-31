@@ -515,6 +515,15 @@ files:
 
     }
   learner_created: false
+- name: src/main/res/values/dimen.xml
+  visible: true
+  text: |-
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <dimen name="box_size">80dp</dimen>
+        <dimen name="box_height">80dp</dimen>
+    </resources>
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/190/stages/950/implement#comment
 status: Unchecked
 record: -1
