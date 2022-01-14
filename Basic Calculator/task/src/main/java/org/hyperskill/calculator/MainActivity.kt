@@ -3,11 +3,24 @@ package org.hyperskill.calculator
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
+enum class Operation(val sign: Char) {
+    ADDITION('+'),
+    SUBTRACTION('-'),
+    DIVISION('/'),
+    MULTIPLICATION('*'),
+    COMPLETED('=')
+}
 
 class MainActivity : AppCompatActivity() {
     var inputField: String = "0"
+    var result: Double = 0.0
+    var tempValue: Double = 0.0
+    var isCalculating: Boolean = false
     lateinit var editText: EditText
+    var operation: Operation? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,59 +40,30 @@ class MainActivity : AppCompatActivity() {
         val dotButton: Button = findViewById<Button>(R.id.dotButton)
         val clearButton: Button = findViewById<Button>(R.id.clearButton)
 
-        button0.setOnClickListener {
-            val digit = 0
-            updateEditText(digit)
-        }
+        val plus: Button = findViewById<Button>(R.id.addButton)
+        val minus: Button = findViewById<Button>(R.id.subtractButton)
+        val divide: Button = findViewById<Button>(R.id.divideButton)
+        val multiply: Button = findViewById<Button>(R.id.multiplyButton)
 
-        button1.setOnClickListener {
-            val digit = 1
-            updateEditText(digit)
-        }
+        val sum: Button = findViewById<Button>(R.id.equalButton)
 
-        button2.setOnClickListener {
-            val digit = 2
-            updateEditText(digit)
-        }
-
-        button3.setOnClickListener {
-            val digit = 3
-            updateEditText(digit)
-        }
-
-        button4.setOnClickListener {
-            val digit = 4
-            updateEditText(digit)
-        }
-
-        button5.setOnClickListener {
-            val digit = 5
-            updateEditText(digit)
-        }
-
-        button6.setOnClickListener {
-            val digit = 6
-            updateEditText(digit)
-        }
-
-        button7.setOnClickListener {
-            val digit = 7
-            updateEditText(digit)
-        }
-
-        button8.setOnClickListener {
-            val digit = 8
-            updateEditText(digit)
-        }
-
-        button9.setOnClickListener {
-            val digit = 9
-            updateEditText(digit)
-        }
+        button0.setOnClickListener { updateEditText(0) }
+        button1.setOnClickListener { updateEditText(1) }
+        button2.setOnClickListener { updateEditText(2) }
+        button3.setOnClickListener { updateEditText(3) }
+        button4.setOnClickListener { updateEditText(4) }
+        button5.setOnClickListener { updateEditText(5) }
+        button6.setOnClickListener { updateEditText(6) }
+        button7.setOnClickListener { updateEditText(7) }
+        button8.setOnClickListener { updateEditText(8) }
+        button9.setOnClickListener { updateEditText(9) }
 
         dotButton.setOnClickListener {
             if (inputField.contains(".")) {
                 // do nothing
+            } else if (inputField.contains("-")) {
+                inputField += "0."
+                editText.setText(inputField)
             } else {
                 inputField += "."
                 editText.setText(inputField)
@@ -88,13 +72,85 @@ class MainActivity : AppCompatActivity() {
 
         clearButton.setOnClickListener {
             clearEditText()
+            clearResult()
         }
 
+        plus.setOnClickListener {
+            if (!isCalculating) {
+                result = inputField.toDouble()
+                isCalculating = true
+            } else {
+                result += inputField.toDouble()
+            }
+            clearEditText()
+            operation = Operation.ADDITION
+        }
+
+        minus.setOnClickListener {
+            if (result == 0.0 && inputField == "0") {
+//                result = result * -1
+                inputField = "-"
+                editText.setText(inputField)
+            } else if (inputField == "-") {
+                inputField = "0"
+                editText.setText(inputField)
+            } else {
+                if (!isCalculating) {
+                    result = inputField.toDouble()
+                    isCalculating = true
+                } else {
+                    result -= inputField.toDouble()
+                }
+                clearEditText()
+                operation = Operation.SUBTRACTION
+            }
+        }
+
+        divide.setOnClickListener {
+            if (!isCalculating) {
+                result = inputField.toDouble()
+                isCalculating = true
+            } else {
+                result /= inputField.toDouble()
+            }
+            clearEditText()
+            operation = Operation.DIVISION
+        }
+
+        multiply.setOnClickListener {
+            if (!isCalculating) {
+                result = inputField.toDouble()
+                isCalculating = true
+            } else {
+                result *= inputField.toDouble()
+            }
+            clearEditText()
+            operation = Operation.MULTIPLICATION
+        }
+
+        sum.setOnClickListener {
+            when (operation) {
+                Operation.ADDITION -> result += inputField.toDouble()
+                Operation.SUBTRACTION -> result -= inputField.toDouble()
+                Operation.DIVISION -> result /= inputField.toDouble()
+                Operation.MULTIPLICATION -> result *= inputField.toDouble()
+                Operation.COMPLETED -> result = inputField.toDouble()
+                else -> {
+                    Toast.makeText(this, "SUM: Something went wrong", Toast.LENGTH_SHORT).show()
+                }
+            }
+            editText.setText(result.toString())
+            inputField = result.toString()
+            clearResult()
+            clearOperation()
+        }
 
     }
 
     private fun updateEditText(userInput: Int) {
-        if (inputField == "0" && userInput == 0) {
+        if (inputField == "0" && userInput == 0
+            || inputField == "-" && userInput == 0
+        ) {
             // do nothing
         } else if (inputField == "0") {
             inputField = userInput.toString()
@@ -108,5 +164,14 @@ class MainActivity : AppCompatActivity() {
     fun clearEditText() {
         inputField = "0"
         editText.setText(inputField)
+    }
+
+    fun clearResult() {
+        result = 0.0
+    }
+
+    private fun clearOperation() {
+        isCalculating = false
+        operation = Operation.COMPLETED
     }
 }
