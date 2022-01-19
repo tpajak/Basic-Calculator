@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Basic_Calculator.iml" filepath="$PROJECT_DIR$/.idea/modules/Basic_Calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Basic Calculator/task/Basic_Calculator.Basic_Calculator-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Basic Calculator/task/Basic_Calculator.Basic_Calculator-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Scopes/Cyclist/Basic_Calculator.Topics-Scopes-Cyclist.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Scopes/Cyclist/Basic_Calculator.Topics-Scopes-Cyclist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Scopes/Open chest in Hogwarts/Basic_Calculator.Topics-Scopes-Open_chest_in_Hogwarts.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Scopes/Open chest in Hogwarts/Basic_Calculator.Topics-Scopes-Open_chest_in_Hogwarts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Scopes/Power and scopes/Basic_Calculator.Topics-Scopes-Power_and_scopes.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Scopes/Power and scopes/Basic_Calculator.Topics-Scopes-Power_and_scopes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Scopes/Theory/Basic_Calculator.Topics-Scopes-Theory.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Scopes/Theory/Basic_Calculator.Topics-Scopes-Theory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Basic_Calculator.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Basic_Calculator.util.iml" />
+    </modules>
+  </component>
+</project>
